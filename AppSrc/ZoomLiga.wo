@@ -164,6 +164,7 @@ Object oZoomLiga is a cWebView
     Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
         Case Begin
             Case (NavigateData.eNavigateType = nfFromMain)
+                Send NavigatePath of oEquiposBtn
                 Case Break
 
             Case (NavigateData.eNavigateType = nfFromParent)

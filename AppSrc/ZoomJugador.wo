@@ -7,11 +7,17 @@ Use cWebPanel.pkg
 Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
 Use cWebForm.pkg
+Use cWebButton.pkg
+Use cWebList.pkg
+Use cWebColumn.pkg
 
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
 Use cjugadorDataDictionary.dd
 Use cposicionDataDictionary.dd
+Use cjugadorposicionDataDictionary.dd
+
+Use SelectJugadorPosicion.wo
 
 Object oZoomJugador is a cWebView
     Set piColumnCount to 12
@@ -31,6 +37,10 @@ Object oZoomJugador is a cWebView
 
     Object ojugador_DD is a cjugadorDataDictionary
         Set DDO_Server to oequipo_DD
+    End_Object
+
+    Object ojugadorposicion_DD is a cjugadorposicionDataDictionary
+        Set DDO_Server to ojugador_DD
     End_Object
 
     Set Main_DD to ojugador_DD
@@ -76,6 +86,31 @@ Object oZoomJugador is a cWebView
             Procedure OnPrompt
                 Send NavigatePath
             End_Procedure
+        End_Object
+
+        // Botón Editar Posiciones
+        Object oBtnEditarPosiciones is a cWebButton
+            Set piColumnSpan to 4
+            Set psCaption to "Editar Posiciones"
+
+            WebRegisterPath ntNavigateForward oSelectJugadorPosicion
+
+            Procedure OnClick
+                Send NavigatePath
+            End_Procedure
+
+        End_Object
+
+        // WebList con posiciones del jugador
+        Object oListaPosicionesJugador is a cWebList
+            Set piColumnSpan to 12
+            Set psCaption to "Posiciones del Jugador"
+            Set Server to ojugadorposicion_DD
+
+            Object oColPosicionID is a cWebColumn
+                Entry_Item jugadorposicion.PosicionID
+                Set psCaption to "Posición ID"
+            End_Object
         End_Object
 
     End_Object

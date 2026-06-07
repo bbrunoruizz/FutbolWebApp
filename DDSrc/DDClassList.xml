@@ -57,6 +57,17 @@
 			</DDClasses>
 		</Table>
 		<Table>
+			<tableNumber>6</tableNumber>
+			<tableName>jugadorposicion</tableName>
+			<DDClasses>
+				<DDClass>
+					<className>cjugadorposicionDataDictionary</className>
+					<classFile>cjugadorposicionDataDictionary.dd</classFile>
+					<preferred>true</preferred>
+				</DDClass>
+			</DDClasses>
+		</Table>
+		<Table>
 			<tableNumber>263</tableNumber>
 			<tableName>WebAppSession</tableName>
 			<DDClasses>

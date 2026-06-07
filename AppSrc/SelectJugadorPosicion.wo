@@ -1,0 +1,74 @@
+﻿Use cWebView.pkg
+Use cWebPanel.pkg
+Use cWebButton.pkg
+Use cWebList.pkg
+Use cWebColumn.pkg
+
+Use cjugadorposicionDataDictionary.dd
+Use cposicionDataDictionary.dd
+Use cjugadorDataDictionary.dd
+
+Object oSelectJugadorPosicion is a cWebView
+    Set piWidth to 700
+    Set psCaption to "Editar Posiciones del Jugador"
+
+    Object oJugadorPosicionDD is a cjugadorposicionDataDictionary
+    End_Object
+
+    Object oPosicionDD is a cposicionDataDictionary
+    End_Object
+
+    Object oJugadorDD is a cjugadorDataDictionary
+    End_Object
+
+    Set Main_DD to oJugadorPosicionDD
+    Set Server  to oJugadorPosicionDD
+
+    Object oWebMainPanel is a cWebPanel
+        Set piColumnCount to 12
+
+        Object oListaTodasPosiciones is a cWebList
+            Set piColumnSpan to 5
+            Set psCaption to "Todas las Posiciones"
+            Set Server to oPosicionDD
+
+            Object oColNombre is a cWebColumn
+                Entry_Item posicion.Nombre
+                Set psCaption to "Posición"
+            End_Object
+        End_Object
+
+        Object oListaPosicionesJugador is a cWebList
+            Set piColumnSpan to 5
+            Set piColumnIndex to 6
+            Set psCaption to "Posiciones del Jugador"
+            Set Server to oJugadorPosicionDD
+
+            Object oColPosicionID is a cWebColumn
+                Entry_Item jugadorposicion.PosicionID
+                Set psCaption to "Posición ID"
+            End_Object
+        End_Object
+
+        Object oBtnAnadir is a cWebButton
+            Set piColumnSpan to 3
+            Set psCaption to "Añadir Posición"
+
+            Procedure OnClick
+                Send Request_Save of oJugadorPosicionDD
+            End_Procedure
+        End_Object
+
+        Object oBtnBorrar is a cWebButton
+            Set piColumnSpan to 3
+            Set piColumnIndex to 4
+            Set psCaption to "Borrar Posición"
+
+            Procedure OnClick
+                Send Request_Delete of oJugadorPosicionDD
+            End_Procedure
+        End_Object
+
+    End_Object
+
+End_Object
